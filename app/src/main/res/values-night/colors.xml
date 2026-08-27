@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Dark Palette -->
+    <color name="bg_primary">#0F172A</color>
+    <color name="bg_card">#1E293B</color>
+    <color name="bg_card_selected">#334155</color>
+    <color name="cell_background">#1E293B</color>
+    <color name="cell_stroke">#334155</color>
+    <color name="overlay_bg">#E60F172A</color>
+    <color name="overlay_card">#1E293B</color>
+    
+    <!-- Fichas y Jugadores -->
+    <color name="player_x_color">#38BDF8</color>
+    <color name="player_o_color">#FB7185</color>
+    
+    <!-- Estados de Juego -->
+    <color name="win_glow">#10B981</color>
+    <color name="draw_color">#F59E0B</color>
+    
+    <!-- Textos -->
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_muted">#64748B</color>
+    
+    <!-- Controles Conecta 4 -->
+    <color name="c4_board">#1E3A8A</color>
+    <color name="c4_board_slot">#0F172A</color>
+    <color name="c4_yellow">#F59E0B</color>
+    <color name="c4_red">#EF4444</color>
+    <color name="c4_slot_light">#334155</color>
+    
+    <!-- Colores de Snake en Modo Oscuro (Slate 800 menos opaco) -->
+    <color name="snake_board_bg">#1E293B</color> <!-- Slate 800 agradable y menos opaco -->
+    <color name="snake_grid_line">#334155</color> <!-- Cuadrícula tenue -->
+    <color name="snake_head">#22C55E</color> <!-- Cabeza verde brillante -->
+    <color name="snake_body">#16A34A</color> <!-- Cuerpo verde -->
+    <color name="snake_apple">#EF4444</color> <!-- Manzana roja -->
+    <color name="snake_golden_apple">#F59E0B</color> <!-- Manzana dorada bonus -->
+    <color name="snake_joystick_base">#334155</color> <!-- Base de palanca oscura -->
+    <color name="snake_joystick_thumb">#94A3B8</color> <!-- Pomo de palanca -->
+    
+    <!-- Controles Material -->
+    <color name="color_primary">#6366F1</color>
+    <color name="color_primary_variant">#4F46E5</color>
+    <color name="color_secondary">#38BDF8</color>
+    
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+</resources>

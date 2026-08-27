@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:paddingHorizontal="12dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <!-- ========================================================================= -->
+    <!-- 1. LATERAL IZQUIERDO: Título del Juego y Marcador de Puntuación           -->
+    <!-- ========================================================================= -->
+    <LinearLayout
+        android:id="@+id/leftPanelLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/boardContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Título a la Izquierda -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:letterSpacing="0.04"
+            android:text="@string/title_connect_four"
+            android:textColor="@color/text_primary"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <!-- Marcador de Puntuación en Columna Vertical -->
+        <LinearLayout
+            android:id="@+id/scoreBoardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="vertical">
+
+            <!-- Tarjeta Jugador Amarillo / X -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardScoreX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/cell_stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="4dp">
+
+                    <TextView
+                        android:id="@+id/tvScoreLabelX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/score_label_you"
+                        android:textColor="@color/c4_yellow"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvScoreX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tarjeta Empates -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardScoreDraws"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/cell_stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="4dp">
+
+                    <TextView
+                        android:id="@+id/tvScoreLabelDraws"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/score_label_draws"
+                        android:textColor="@color/draw_color"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvScoreDraws"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tarjeta Jugador Rojo / CPU / O -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardScoreO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/cell_stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="4dp">
+
+                    <TextView
+                        android:id="@+id/tvScoreLabelO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/score_label_cpu"
+                        android:textColor="@color/c4_red"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvScoreO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ========================================================================= -->
+    <!-- 2. CENTRO SUPERIOR: Indicador de Estado/Turno en 2 Filas Verticales       -->
+    <!-- ========================================================================= -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardTurnBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/bg_card"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/boardContainer"
+        app:layout_constraintEnd_toEndOf="@+id/boardContainer"
+        app:layout_constraintStart_toStartOf="@+id/boardContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/cell_stroke"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:id="@+id/tvTurnLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.08"
+                android:text="@string/label_status"
+                android:textAllCaps="true"
+                android:textColor="@color/text_muted"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:letterSpacing="0.02"
+                android:text="@string/c4_status_ready"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ========================================================================= -->
+    <!-- 3. CENTRO: Tablero Conecta 4 (7:6 Ratio) Inmóvil y Centrado en Pantalla   -->
+    <!-- ========================================================================= -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/boardContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="7:6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardTurnBadge">
+
+        <LinearLayout
+            android:id="@+id/layoutC4Board"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_c4_board"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="7">
+
+            <LinearLayout android:id="@+id/col0" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical" android:weightSum="6">
+                <ImageView android:id="@+id/slot00" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot10" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot20" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot30" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot40" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot50" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/col1" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical" android:weightSum="6">
+                <ImageView android:id="@+id/slot01" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot11" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot21" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot31" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot41" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot51" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/col2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical" android:weightSum="6">
+                <ImageView android:id="@+id/slot02" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot12" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot22" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot32" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot42" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot52" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/col3" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical" android:weightSum="6">
+                <ImageView android:id="@+id/slot03" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot13" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot23" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot33" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot43" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot53" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/col4" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical" android:weightSum="6">
+                <ImageView android:id="@+id/slot04" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot14" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot24" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot34" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot44" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot54" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/col5" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical" android:weightSum="6">
+                <ImageView android:id="@+id/slot05" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot15" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot25" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot35" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot45" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot55" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/col6" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:clickable="true" android:focusable="true" android:gravity="center" android:orientation="vertical" android:weightSum="6">
+                <ImageView android:id="@+id/slot06" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot16" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot26" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot36" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot46" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+                <ImageView android:id="@+id/slot56" android:layout_width="match_parent" android:layout_height="0dp" android:layout_margin="1.5dp" android:layout_weight="1" android:src="@drawable/bg_c4_slot" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Capa de Overlay Fin de Partida -->
+        <FrameLayout
+            android:id="@+id/layoutBoardOverlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/overlay_bg"
+            android:clickable="true"
+            android:elevation="10dp"
+            android:focusable="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardOverlayContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                app:cardBackgroundColor="@color/overlay_card"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="8dp"
+                app:strokeColor="@color/cell_stroke"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvOverlayTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/overlay_victory"
+                        android:textColor="@color/c4_yellow"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvOverlaySubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:text="@string/c4_overlay_desc_winner_yellow"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPlayAgain"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/color_primary"
+                        android:letterSpacing="0.02"
+                        android:text="@string/action_play_again"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFinishGame"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="6dp"
+                        android:letterSpacing="0.02"
+                        android:text="@string/snake_btn_finish"
+                        android:textAllCaps="false"
+                        android:textColor="@color/player_o_color"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:strokeColor="@color/player_o_color"
+                        app:strokeWidth="1.2dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ========================================================================= -->
+    <!-- 4. LATERAL DERECHO: Panel de Controles Cómodo y Botón de Abandonar        -->
+    <!-- ========================================================================= -->
+    <FrameLayout
+        android:id="@+id/layoutBottomArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/boardContainer"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Panel de Configuración -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/layoutControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!-- Fila 1: Selector de Modo de Juego -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleGameMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:checkedButton="@+id/btnModeVsAi"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnModeVsAi"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="4dp"
+                        android:text="@string/mode_vs_ai"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/ic_single_player"
+                        app:iconGravity="textStart"
+                        app:iconPadding="3dp"
+                        app:iconSize="13dp"
+                        app:iconTint="@null"
+                        app:strokeColor="@color/cell_stroke" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnModeTwoPlayers"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="4dp"
+                        android:text="@string/mode_two_players"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_primary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/ic_two_players"
+                        app:iconGravity="textStart"
+                        app:iconPadding="3dp"
+                        app:iconSize="13dp"
+                        app:iconTint="@null"
+                        app:strokeColor="@color/cell_stroke" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- Fila 2: Selector de Ficha / Color Inicial -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/togglePlayerSymbol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    app:checkedButton="@+id/btnSymbolX"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSymbolX"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="33dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="2dp"
+                        android:text="@string/c4_symbol_yellow"
+                        android:textAllCaps="false"
+                        android:textColor="@color/c4_yellow"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/cell_stroke" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSymbolO"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="33dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="2dp"
+                        android:text="@string/c4_symbol_red"
+                        android:textAllCaps="false"
+                        android:textColor="@color/c4_red"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/cell_stroke" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSymbolRandom"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="33dp"
+                        android:layout_weight="1.3"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="2dp"
+                        android:text="@string/symbol_random"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10.5sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/ic_symbol_random"
+                        app:iconGravity="textStart"
+                        app:iconPadding="2dp"
+                        app:iconSize="12dp"
+                        app:iconTint="@null"
+                        app:strokeColor="@color/cell_stroke" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- Fila 3: Selector de Dificultad -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleDifficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    app:checkedButton="@+id/btnDiffMedium"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDiffEasy"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="33dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="2dp"
+                        android:text="@string/diff_easy"
+                        android:textAllCaps="false"
+                        android:textColor="@color/win_glow"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/win_glow"
+                        app:strokeWidth="1.2dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDiffMedium"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="33dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="2dp"
+                        android:text="@string/diff_medium"
+                        android:textAllCaps="false"
+                        android:textColor="@color/draw_color"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/draw_color"
+                        app:strokeWidth="1.2dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDiffHard"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="33dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingHorizontal="2dp"
+                        android:text="@string/diff_hard"
+                        android:textAllCaps="false"
+                        android:textColor="@color/player_o_color"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        app:strokeColor="@color/player_o_color"
+                        app:strokeWidth="1.2dp" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botón de Abandonar Partida (ocupa la misma área cuando el juego está activo) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAbandonGame"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:letterSpacing="0.02"
+            android:text="@string/action_abandon"
+            android:textAllCaps="false"
+            android:textColor="@color/player_o_color"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:cornerRadius="14dp"
+            app:icon="@drawable/ic_abandon"
+            app:iconGravity="textStart"
+            app:iconPadding="6dp"
+            app:iconSize="18dp"
+            app:iconTint="@null"
+            app:strokeColor="@color/player_o_color"
+            app:strokeWidth="1.5dp"
+            tools:visibility="visible" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

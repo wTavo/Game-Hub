@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="12dp">
+
+    <!-- 1. Header: Título del Juego -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.05"
+        android:text="@string/game_title"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 2. Marcador de Puntuación (ScoreBoard Fijo) -->
+    <LinearLayout
+        android:id="@+id/scoreBoardLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+
+        <!-- Tarjeta Jugador X -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardScoreX"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="6dp">
+
+                <TextView
+                    android:id="@+id/tvScoreLabelX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/score_label_you"
+                    android:textColor="@color/player_x_color"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvScoreX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta Empates -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardScoreDraws"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="6dp">
+
+                <TextView
+                    android:id="@+id/tvScoreLabelDraws"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/score_label_draws"
+                    android:textColor="@color/draw_color"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvScoreDraws"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta Jugador O / CPU -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardScoreO"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="6dp">
+
+                <TextView
+                    android:id="@+id/tvScoreLabelO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/score_label_cpu"
+                    android:textColor="@color/player_o_color"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvScoreO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <!-- 3. Indicador de Turno Fijo y Centrado entre el Marcador y el Tablero -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardTurnBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/bg_card"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/boardContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scoreBoardLayout"
+        app:layout_constraintVertical_bias="0.5"
+        app:strokeColor="@color/cell_stroke"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="6dp">
+
+            <TextView
+                android:id="@+id/tvTurnLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text="@string/label_status"
+                android:textAllCaps="true"
+                android:textColor="@color/text_muted"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:letterSpacing="0.02"
+                android:text="@string/status_ready_to_play"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 4. Tablero de Juego (1:1 Ratio) Inmóvil y Centrado -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/boardContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/layoutBottomArea"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardTurnBadge"
+        app:layout_constraintVertical_bias="0.5">
+
+        <!-- Fila 0 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card00"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/card10"
+            app:layout_constraintEnd_toStartOf="@+id/card01"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell00"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                tools:text="X" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card01"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/card11"
+            app:layout_constraintEnd_toStartOf="@+id/card02"
+            app:layout_constraintStart_toEndOf="@+id/card00"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                tools:text="O" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card02"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/card12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card01"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell02"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Fila 1 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/card20"
+            app:layout_constraintEnd_toStartOf="@+id/card11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card00"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/card21"
+            app:layout_constraintEnd_toStartOf="@+id/card12"
+            app:layout_constraintStart_toEndOf="@+id/card10"
+            app:layout_constraintTop_toBottomOf="@+id/card01"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/card22"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card11"
+            app:layout_constraintTop_toBottomOf="@+id/card02"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Fila 2 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card20"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/card21"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card10"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card21"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/card22"
+            app:layout_constraintStart_toEndOf="@+id/card20"
+            app:layout_constraintTop_toBottomOf="@+id/card11"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card22"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/cell_background"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card21"
+            app:layout_constraintTop_toBottomOf="@+id/card12"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/tvCell22"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Capa de Overlay Nublado / Fin de Partida -->
+        <FrameLayout
+            android:id="@+id/layoutBoardOverlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/overlay_bg"
+            android:clickable="true"
+            android:elevation="10dp"
+            android:focusable="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardOverlayContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                app:cardBackgroundColor="@color/overlay_card"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:strokeColor="@color/cell_stroke"
+                app:strokeWidth="1.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:id="@+id/tvOverlayTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/overlay_victory"
+                        android:textColor="@color/text_primary"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvOverlaySubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:text="@string/overlay_desc_winner_you"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPlayAgain"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="@color/color_primary"
+                        android:letterSpacing="0.02"
+                        android:text="@string/action_play_again"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFinishGame"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="8dp"
+                        android:letterSpacing="0.02"
+                        android:text="@string/snake_btn_finish"
+                        android:textAllCaps="false"
+                        android:textColor="@color/player_o_color"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="@color/player_o_color"
+                        app:strokeWidth="1.5dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 5. Zona Inferior Fija (Panel de Configuración Amplio y Botón de Abandonar) -->
+    <FrameLayout
+        android:id="@+id/layoutBottomArea"
+        android:layout_width="0dp"
+        android:layout_height="186dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Panel de Configuración Estilizado y Cómodo (Modo, Ficha y Dificultad) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/layoutControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="3dp"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1.2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <!-- Fila 1: Selector de Modo de Juego -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleGameMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:checkedButton="@+id/btnModeVsAi"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnModeVsAi"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:letterSpacing="0.02"
+                        android:text="@string/mode_vs_ai"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="11dp"
+                        app:icon="@drawable/ic_single_player"
+                        app:iconGravity="textStart"
+                        app:iconPadding="6dp"
+                        app:iconSize="16dp"
+                        app:iconTint="@null"
+                        app:strokeColor="@color/cell_stroke" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnModeTwoPlayers"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:letterSpacing="0.02"
+                        android:text="@string/mode_two_players"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="11dp"
+                        app:icon="@drawable/ic_two_players"
+                        app:iconGravity="textStart"
+                        app:iconPadding="6dp"
+                        app:iconSize="16dp"
+                        app:iconTint="@null"
+                        app:strokeColor="@color/cell_stroke" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- Fila 2: Selector de Ficha / Turno Inicial (Visible en 1 Jugador) -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/togglePlayerSymbol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:checkedButton="@+id/btnSymbolX"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSymbolX"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/symbol_x"
+                        android:textAllCaps="false"
+                        android:textColor="@color/player_x_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:strokeColor="@color/cell_stroke" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSymbolO"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/symbol_o"
+                        android:textAllCaps="false"
+                        android:textColor="@color/player_o_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:strokeColor="@color/cell_stroke" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSymbolRandom"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/symbol_random"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_symbol_random"
+                        app:iconGravity="textStart"
+                        app:iconPadding="4dp"
+                        app:iconSize="14dp"
+                        app:iconTint="@null"
+                        app:strokeColor="@color/cell_stroke" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- Fila 3: Selector de Dificultad (Botones Outlined con Bordes y Letras Coloreados) -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleDifficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:checkedButton="@+id/btnDiffMedium"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDiffEasy"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/diff_easy"
+                        android:textAllCaps="false"
+                        android:textColor="@color/win_glow"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:strokeColor="@color/win_glow"
+                        app:strokeWidth="1.5dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDiffMedium"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/diff_medium"
+                        android:textAllCaps="false"
+                        android:textColor="@color/draw_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:strokeColor="@color/draw_color"
+                        app:strokeWidth="1.5dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDiffHard"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/diff_hard"
+                        android:textAllCaps="false"
+                        android:textColor="@color/player_o_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="10dp"
+                        app:strokeColor="@color/player_o_color"
+                        app:strokeWidth="1.5dp" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botón de Abandonar Partida (ocupa la misma área cuando el juego está activo) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAbandonGame"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:letterSpacing="0.03"
+            android:text="@string/action_abandon"
+            android:textAllCaps="false"
+            android:textColor="@color/player_o_color"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_abandon"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconSize="20dp"
+            app:iconTint="@null"
+            app:strokeColor="@color/player_o_color"
+            app:strokeWidth="1.8dp"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

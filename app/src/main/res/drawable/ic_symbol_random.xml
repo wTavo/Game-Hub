@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Cara del Dado en Blanco Puro con Contorno Negro -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.6"
+        android:strokeLineJoin="round"
+        android:pathData="M18.5,3.8H5.5C4.6,3.8 3.8,4.6 3.8,5.5v13c0,0.9 0.8,1.7 1.7,1.7h13c0.9,0 1.7,-0.8 1.7,-1.7V5.5C20.2,4.6 19.4,3.8 18.5,3.8z" />
+
+    <!-- 5 Puntos del Dado en Negro Puro -->
+    <!-- Superior Izquierdo -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M7.5,7.5m-1.5,0a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0" />
+    <!-- Superior Derecho -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M16.5,7.5m-1.5,0a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0" />
+    <!-- Centro -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,12m-1.5,0a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0" />
+    <!-- Inferior Izquierdo -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M7.5,16.5m-1.5,0a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0" />
+    <!-- Inferior Derecho -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M16.5,16.5m-1.5,0a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0" />
+
+</vector>

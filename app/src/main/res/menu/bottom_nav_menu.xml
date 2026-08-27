@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_tictactoe"
+        android:icon="@drawable/ic_nav_tictactoe"
+        android:title="@string/nav_tictactoe" />
+
+    <item
+        android:id="@+id/nav_connect4"
+        android:icon="@drawable/ic_nav_connect4"
+        android:title="@string/nav_connect4" />
+
+    <item
+        android:id="@+id/nav_snake"
+        android:icon="@drawable/ic_nav_snake"
+        android:title="@string/nav_snake" />
+</menu>

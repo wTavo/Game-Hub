@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nombre de la App -->
+    <string name="app_name">Game Hub</string>
+    
+    <!-- Títulos y Encabezados -->
+    <string name="game_title">Tres en Raya</string>
+    <string name="section_game_mode">Modo de juego</string>
+    <string name="section_difficulty">Dificultad</string>
+    
+    <!-- Modos de Juego -->
+    <string name="mode_vs_ai">1 Jugador</string>
+    <string name="mode_two_players">2 Jugadores</string>
+    
+    <!-- Selector de Ficha / Turno -->
+    <string name="symbol_x">Ficha X</string>
+    <string name="symbol_o">Ficha O</string>
+    <string name="symbol_random">Aleatorio</string>
+    
+    <!-- Dificultades -->
+    <string name="diff_easy">Fácil</string>
+    <string name="diff_medium">Medio</string>
+    <string name="diff_hard">Difícil</string>
+    
+    <!-- Etiquetas del Marcador -->
+    <string name="score_label_you">Tú</string>
+    <string name="score_label_you_with_symbol">Tú (%1$s)</string>
+    <string name="score_label_cpu">CPU</string>
+    <string name="score_label_cpu_with_symbol">CPU (%1$s)</string>
+    <string name="score_label_player_1">Jugador 1</string>
+    <string name="score_label_player_1_with_symbol">Jugador 1 (%1$s)</string>
+    <string name="score_label_player_2">Jugador 2</string>
+    <string name="score_label_player_2_with_symbol">Jugador 2 (%1$s)</string>
+    <string name="score_label_draws">Empates</string>
+    
+    <!-- Estados de Turno y Resultado (Etiquetas y Nombres Separados) -->
+    <string name="label_turn_of">TURNO DE</string>
+    <string name="label_status">ESTADO</string>
+    <string name="label_result">RESULTADO</string>
+    <string name="turn_player_1">Jugador 1</string>
+    <string name="turn_player_2">Jugador 2</string>
+    <string name="turn_cpu">CPU</string>
+    <string name="status_ready_to_play">Toca una casilla para jugar</string>
+    <string name="status_winner_player_1">¡Ganador: Jugador 1!</string>
+    <string name="status_winner_player_2">¡Ganador: Jugador 2!</string>
+    <string name="status_winner_cpu">¡La CPU ha ganado!</string>
+    <string name="status_winner_you">¡Has ganado!</string>
+    <string name="status_draw">¡Es un Empate!</string>
+    
+    <!-- Textos del Overlay de Fin de Partida -->
+    <string name="overlay_victory">¡Victoria!</string>
+    <string name="overlay_defeat">¡Derrota!</string>
+    <string name="overlay_draw">¡Empate!</string>
+    <string name="overlay_desc_winner_player_1">El Jugador 1 se lleva la ronda</string>
+    <string name="overlay_desc_winner_player_2">El Jugador 2 se lleva la ronda</string>
+    <string name="overlay_desc_winner_cpu">La CPU se lleva la ronda</string>
+    <string name="overlay_desc_winner_you">¡Excelente jugada!</string>
+    <string name="overlay_desc_draw">Nadie suma puntos en esta ronda</string>
+    
+    <!-- Acciones y Botones -->
+    <string name="action_restart">Nueva Partida</string>
+    <string name="action_abandon">Abandonar partida</string>
+    <string name="action_play_again">Jugar de nuevo</string>
+    
+    <!-- Barra de Navegación / Menú de Juegos -->
+    <string name="nav_tictactoe">Tres en Raya</string>
+    <string name="nav_connect4">Conecta 4</string>
+    <string name="nav_snake">Gusanito</string>
+    
+    <!-- Títulos de Juegos -->
+    <string name="title_connect_four">Conecta 4</string>
+    <string name="title_snake">Gusanito Arcade</string>
+    
+    <!-- Textos de Conecta 4 -->
+    <string name="c4_symbol_yellow">Amarillo</string>
+    <string name="c4_symbol_red">Rojo</string>
+    <string name="c4_status_ready">Toca una columna para jugar</string>
+    <string name="c4_overlay_desc_winner_yellow">¡4 en línea completado!</string>
+    
+    <!-- Textos de Snake (Gusanito Arcade) -->
+    <string name="snake_score_label">Puntos</string>
+    <string name="snake_high_score_label">Récord</string>
+    <string name="snake_apples_label">Manzanas</string>
+    <string name="snake_mode_classic">Con bordes</string>
+    <string name="snake_mode_free">Sin bordes</string>
+    <string name="snake_status_ready">Pulsa Nueva Partida para jugar</string>
+    <string name="snake_status_playing">¡Recolecta manzanas y crece!</string>
+    <string name="snake_status_paused">Partida en pausa</string>
+    <string name="snake_status_game_over">¡Has chocado!</string>
+    <string name="snake_overlay_game_over">¡Fin de Partida!</string>
+    <string name="snake_overlay_new_record">¡Nuevo Récord Histórico!</string>
+    <string name="snake_overlay_desc_score">Puntuación alcanzada: %1$d puntos</string>
+    <string name="snake_btn_pause">Pausa</string>
+    <string name="snake_btn_resume">Reanudar</string>
+    <string name="snake_btn_finish">Terminar juego</string>
+    <string name="snake_gestures_hint">Desliza en cualquier dirección para girar</string>
+    
+    <!-- Accesibilidad -->
+    <string name="cd_cell">Casilla fila %1$d columna %2$d</string>
+    <string name="cd_c4_column">Columna %1$d de Conecta 4</string>
+    <string name="cd_snake_up">Mover hacia arriba</string>
+    <string name="cd_snake_down">Mover hacia abajo</string>
+    <string name="cd_snake_left">Mover hacia la izquierda</string>
+    <string name="cd_snake_right">Mover hacia la derecha</string>
+</resources>

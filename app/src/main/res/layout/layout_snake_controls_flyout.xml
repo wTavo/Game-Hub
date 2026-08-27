@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardControlsFlyoutRoot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/bg_card"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="12dp"
+    app:strokeColor="@color/cell_stroke"
+    app:strokeWidth="1.5dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- 1. Opción: Palanca Arcade -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPopupJoystick"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginEnd="6dp"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/bg_primary"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/color_primary"
+            app:strokeWidth="3dp">
+
+            <com.example.gamehub.games.snake.ui.SnakeJoystickView
+                android:id="@+id/popupJoystickPreview"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:focusable="false" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 2. Opción: Botones D-Pad -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPopupButtons"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginEnd="6dp"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/bg_primary"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <com.example.gamehub.games.snake.ui.SnakeDpadView
+                android:id="@+id/popupDpadPreview"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:focusable="false" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 3. Opción: Touchpad Gestos -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPopupGestures"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/bg_primary"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/cell_stroke"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/tvPopupGesturesLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.04"
+                    android:text="TOUCH"
+                    android:textColor="@color/text_muted"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/ivPopupGesturesIcon"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_single_player"
+                    app:tint="@color/text_muted" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

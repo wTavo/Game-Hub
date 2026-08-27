@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores base y fondos (Light Palette) -->
+    <color name="bg_primary">#F8FAFC</color> <!-- Slate 50 suave y limpio -->
+    <color name="bg_card">#FFFFFF</color> <!-- Blanco puro para tarjetas elevadas -->
+    <color name="bg_card_selected">#E2E8F0</color>
+    <color name="cell_background">#FFFFFF</color>
+    <color name="cell_stroke">#CBD5E1</color> <!-- Slate 300 para bordes claros definidos -->
+    <color name="overlay_bg">#E6FFFFFF</color> <!-- Frosted glass blanco semitransparente -->
+    <color name="overlay_card">#FFFFFF</color>
+    
+    <!-- Fichas y Jugadores (tonos de alto contraste sobre fondo claro) -->
+    <color name="player_x_color">#0284C7</color> <!-- Azul Cyan intenso -->
+    <color name="player_o_color">#E11D48</color> <!-- Rosa / Carmesí vibrante -->
+    
+    <!-- Estados de Juego -->
+    <color name="win_glow">#059669</color> <!-- Esmeralda profundo -->
+    <color name="draw_color">#D97706</color> <!-- Ámbar dorado -->
+    
+    <!-- Textos -->
+    <color name="text_primary">#0F172A</color> <!-- Slate 900 de alto contraste -->
+    <color name="text_secondary">#475569</color> <!-- Slate 600 -->
+    <color name="text_muted">#94A3B8</color> <!-- Slate 400 -->
+    
+    <!-- Controles Conecta 4 -->
+    <color name="c4_board">#1E3A8A</color> <!-- Azul real de tablero vertical -->
+    <color name="c4_board_slot">#0F172A</color> <!-- Agujero de ranura circular -->
+    <color name="c4_yellow">#F59E0B</color> <!-- Ficha Amarilla / Dorada -->
+    <color name="c4_red">#EF4444</color> <!-- Ficha Roja -->
+    <color name="c4_slot_light">#E2E8F0</color> <!-- Agujero en modo claro -->
+    
+    <!-- Colores de Snake (Gusanito Arcade) en Modo Claro (Tono opaco elegante) -->
+    <color name="snake_board_bg">#CBD5E1</color> <!-- Slate 300 opaco para alto contraste en White mode -->
+    <color name="snake_grid_line">#94A3B8</color> <!-- Cuadrícula tenue -->
+    <color name="snake_head">#15803D</color> <!-- Cabeza verde esmeralda nítida -->
+    <color name="snake_body">#16A34A</color> <!-- Cuerpo verde -->
+    <color name="snake_apple">#DC2626</color> <!-- Manzana roja -->
+    <color name="snake_golden_apple">#D97706</color> <!-- Manzana dorada bonus -->
+    <color name="snake_joystick_base">#E2E8F0</color> <!-- Base de palanca arcade -->
+    <color name="snake_joystick_thumb">#475569</color> <!-- Pomo de palanca -->
+    
+    <!-- Controles Material -->
+    <color name="color_primary">#4F46E5</color> <!-- Índigo -->
+    <color name="color_primary_variant">#4338CA</color>
+    <color name="color_secondary">#0284C7</color>
+    
+    <!-- Colores base -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+</resources>
